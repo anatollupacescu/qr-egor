@@ -25,7 +25,6 @@ def process_pdf_codes(pdf_path):
 
         # Set up CSV writer for stdout
         writer = csv.writer(sys.stdout)
-        writer.writerow(['Page', 'Content'])
 
         codes_found = 0
         for page_num, page in enumerate(pages, 1):
@@ -36,7 +35,7 @@ def process_pdf_codes(pdf_path):
             for code in codes:
                 try:
                     content = code.data.decode('utf-8').strip()
-                    writer.writerow([page_num, content])
+                    writer.writerow([content])
                     codes_found += 1
                 except Exception as e:
                     print(f"Error decoding Data Matrix on page {page_num}: {str(e)}", file=sys.stderr)
